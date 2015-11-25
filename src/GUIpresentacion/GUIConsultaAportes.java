@@ -5,6 +5,8 @@
  */
 package GUIpresentacion;
 
+import com.mxrck.autocompleter.TextAutoCompleter;
+
 /**
  *
  * @author gabriel
@@ -18,6 +20,30 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         initComponents();
     }
 
+    /**Este metodo autocompleta solo lo que esta ahi
+     * faltaria que se autocomplete con datos de la base
+     */
+    
+    public void additemtextfield(){
+   
+    TextAutoCompleter nombres= new TextAutoCompleter(texnombre);
+    
+    
+      
+    nombres.addItem("gabriel");
+    nombres.addItem("gabrieles");
+    nombres.addItem("gabrielitos");
+    nombres.addItem("natalias");
+    nombres.addItem("natalia");
+    nombres.addItem("holas");
+       
+     
+   
+   }
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
