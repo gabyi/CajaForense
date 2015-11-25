@@ -358,5 +358,17 @@ public class Abogado extends Persona {
             return(rs);
         }
 
+   public ResultSet buscarabogado (String dato) throws ClassNotFoundException, SQLException{
+   
+       cn =Conexion.getInstance();
+       ResultSet rs=null;
+       
+       System.out.println("dato en mayuscula"+dato);
+       
+       rs= cn.Select("SELECT nombre, apellido, codprof FROM abogado WHERE nombre LIKE '"+dato+"%'");
+       System.out.println("--- "+rs.getString(1));
+       
+       return(rs);
+   }
      
 }

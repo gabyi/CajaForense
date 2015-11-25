@@ -6,6 +6,9 @@
 package GUIpresentacion;
 
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import logica.Abogado;
 
 /**
  *
@@ -13,38 +16,19 @@ import com.mxrck.autocompleter.TextAutoCompleter;
  */
 public class GUIConsultaAportes extends javax.swing.JPanel {
 
+    Abogado ab;
+    ResultSet rs;
+    String dato;
     /**
      * Creates new form GUIConsultaAportes
      */
     public GUIConsultaAportes() {
         initComponents();
-        additemtextfield();
+        
+        ocultar();
     }
 
-    /**Este metodo autocompleta solo lo que esta ahi
-     * faltaria que se autocomplete con datos de la base
-     */
-    
-    public void additemtextfield(){
-   
-    TextAutoCompleter nombres= new TextAutoCompleter(texnombre);
-    
-    
-    
-    
-    nombres.addItem("gabriel");
-    nombres.addItem("gabrieles");
-    nombres.addItem("gabrielitos");
-    nombres.addItem("natalias");
-    nombres.addItem("natalia");
-    nombres.addItem("holas");
-       
-     
-   
-   }
-    
-    
-    
+
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -59,6 +43,16 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         titulo_altas = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        busquedaprof = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        codprof = new javax.swing.JTextField();
+        busnom = new javax.swing.JTextField();
+        apenom = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(910, 559));
 
@@ -71,7 +65,87 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         jLabel1.setText("Apellido del Profesional: ");
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Buscar");
+        jButton1.setText("Buscar Profesional");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel2.setText("Nombre: ");
+
+        jLabel3.setText("Apellido: ");
+
+        jLabel5.setText("Codigo Profesional: ");
+
+        jButton2.setText("Atras");
+
+        jButton3.setText("Adelante");
+
+        jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jButton4.setText("Seleccionar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
+        codprof.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        codprof.setEnabled(false);
+
+        busnom.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        busnom.setEnabled(false);
+
+        apenom.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        apenom.setEnabled(false);
+
+        javax.swing.GroupLayout busquedaprofLayout = new javax.swing.GroupLayout(busquedaprof);
+        busquedaprof.setLayout(busquedaprofLayout);
+        busquedaprofLayout.setHorizontalGroup(
+            busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(busquedaprofLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(busquedaprofLayout.createSequentialGroup()
+                        .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2)
+                            .addComponent(jLabel3))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(codprof)
+                            .addComponent(busnom)
+                            .addComponent(apenom))
+                        .addContainerGap())
+                    .addGroup(busquedaprofLayout.createSequentialGroup()
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))))
+        );
+        busquedaprofLayout.setVerticalGroup(
+            busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(busquedaprofLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(codprof, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(busnom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(apenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton2)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(50, 50, 50))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -84,10 +158,12 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(texnombre, javax.swing.GroupLayout.PREFERRED_SIZE, 330, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(busquedaprof, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(texnombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton1)
-                .addContainerGap(221, Short.MAX_VALUE))
+                .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,15 +176,61 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(texnombre)
                         .addComponent(jButton1)))
-                .addContainerGap(429, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(busquedaprof, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(259, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       buscar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       ocultar();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField apenom;
+    private javax.swing.JTextField busnom;
+    private javax.swing.JPanel busquedaprof;
+    private javax.swing.JTextField codprof;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField texnombre;
     private javax.swing.JLabel titulo_altas;
     // End of variables declaration//GEN-END:variables
+
+    private void ocultar() {
+      busquedaprof.setVisible(false);
+    }
+    
+    public void buscar(){
+        
+    dato= texnombre.getText();
+    dato= dato.toUpperCase();
+    System.out.println("dato pasado por el boton buscar "+dato+" en metodo buscar");
+     
+    busquedaprof.setVisible(true);        
+        
+        try {
+            
+            rs=ab.buscarabogado(dato); 
+           
+        } catch (ClassNotFoundException | SQLException e) {
+            
+        }
+  
+                
+    
+    }
+    
+    
 }
