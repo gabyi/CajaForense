@@ -18,6 +18,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
      */
     public GUIConsultaAportes() {
         initComponents();
+        additemtextfield();
     }
 
     /**Este metodo autocompleta solo lo que esta ahi
@@ -29,7 +30,8 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     TextAutoCompleter nombres= new TextAutoCompleter(texnombre);
     
     
-      
+    
+    
     nombres.addItem("gabriel");
     nombres.addItem("gabrieles");
     nombres.addItem("gabrielitos");
