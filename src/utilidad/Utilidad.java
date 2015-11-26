@@ -381,6 +381,8 @@ lista.setModel(modelo);
  
  }  
    
-
+public static String[] cortarCadenaPorEspacios(String cadena) {
+  return cadena.split("\\s+");
+}
 
 }

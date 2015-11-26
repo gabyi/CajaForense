@@ -365,8 +365,14 @@ public class Abogado extends Persona {
        
        System.out.println("dato en mayuscula "+dato);
        
-       rs= cn.Select("SELECT nombre, apellido, codprof FROM abogado WHERE apellido LIKE '%"+dato+"%' or nombre LIKE '%"+dato+"%' ");
+       String[] cadena= Utilidad.cortarCadenaPorEspacios(dato);
        
+       if(cadena.length==1)
+       rs= cn.Select("SELECT nombre, apellido, codprof FROM abogado WHERE nombre LIKE '%"+cadena[0]+"%' or apellido LIKE '%"+cadena[0]+"%' ");
+       
+       if(cadena.length>1)
+       rs= cn.Select("SELECT nombre, apellido, codprof FROM abogado WHERE nombre LIKE '%"+cadena[1]+"%' and apellido "
+               + "LIKE '%"+cadena[0]+"%' OR apellido LIKE '%"+cadena[1]+"%' and nombre LIKE '%"+cadena[0]+"%'");
        //System.out.println(rs.getString(1)+" esto es en abogado"); esta comentado porque no deja devolver el rs
        
        return(rs);

@@ -44,7 +44,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         texnombre = new javax.swing.JTextField();
         titulo_altas = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        buscar = new javax.swing.JButton();
         busquedaprof = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -66,11 +66,11 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Apellido del Profesional: ");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText("Buscar Profesional");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        buscar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        buscar.setText("Buscar Profesional");
+        buscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                buscarActionPerformed(evt);
             }
         });
 
@@ -103,12 +103,17 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         });
 
         buscodprof.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buscodprof.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         buscodprof.setEnabled(false);
+        buscodprof.setSelectedTextColor(new java.awt.Color(0, 0, 0));
+        buscodprof.setSelectionColor(new java.awt.Color(0, 0, 153));
 
         busnom.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        busnom.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         busnom.setEnabled(false);
 
         busape.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        busape.setDisabledTextColor(new java.awt.Color(51, 51, 51));
         busape.setEnabled(false);
 
         javax.swing.GroupLayout busquedaprofLayout = new javax.swing.GroupLayout(busquedaprof);
@@ -174,7 +179,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                             .addComponent(busquedaprof, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(texnombre, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 330, Short.MAX_VALUE))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton1)
+                .addComponent(buscar)
                 .addContainerGap(129, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -182,23 +187,37 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addComponent(titulo_altas)
-                .addGap(50, 50, 50)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(texnombre)
-                        .addComponent(jButton1)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(busquedaprof, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(259, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(50, 50, 50)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(texnombre)
+                                .addComponent(buscar))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(busquedaprof, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(340, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       buscar();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void buscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buscarActionPerformed
+        if(texnombre.isEditable()){
+        texnombre.setEditable(true);
+        texnombre.setVisible(false);
+        buscar.setText("Volver a Buscar");
+        buscar();}else{
+        texnombre.setEditable(true);
+        texnombre.setText("");
+        buscar.setText("Buscar Profesional");
+        }
+    }//GEN-LAST:event_buscarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+       texnombre.setText(busape.getText()+", "+busnom.getText());
+       texnombre.setEditable(false);
+       texnombre.setVisible(true);
        ocultar();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -231,10 +250,10 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     private javax.swing.JButton busadelante;
     private javax.swing.JTextField busape;
     private javax.swing.JButton busatras;
+    private javax.swing.JButton buscar;
     private javax.swing.JTextField buscodprof;
     private javax.swing.JTextField busnom;
     private javax.swing.JPanel busquedaprof;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
