@@ -260,7 +260,7 @@ public class Abogado extends Persona {
             //rs = conexion.Select("SELECT fecha_pedido, CLIENTE_DNI,"
               //  + " CULTIVO_variedad,cantidad_pedida FROM pedido WHERE estado_pedido ='aceptado'"
                // + "AND CULTIVO_nombre_cultivo =  '"+cultivo+"'");
-            rs=cn.Select("SELECT nombre FROM Ciudad  WHERE Provincia_nombre = '"+provincia+"'"); // ORDER BY DESC");
+            rs=cn.Select("SELECT nombre FROM ciudad  WHERE provincia_nombre = '"+provincia+"'"); // ORDER BY DESC");
             
             return(rs);
         }
@@ -270,7 +270,7 @@ public class Abogado extends Persona {
             cn=  Conexion.getInstance();
             ResultSet rs=null;
             
-                    rs=cn.Select("SELECT nombre FROM Provincia ");//ORDER BY DESC");
+                    rs=cn.Select("SELECT nombre FROM provincia ");//ORDER BY DESC");
             
             
             return(rs);
@@ -296,7 +296,7 @@ public class Abogado extends Persona {
             cn=  Conexion.getInstance();
             ResultSet rs=null;
             
-                    rs=cn.Select("SELECT nombre FROM ObraSocial");
+                    rs=cn.Select("SELECT nombre FROM obrasocial");
             
             
             return(rs);
@@ -363,10 +363,11 @@ public class Abogado extends Persona {
        cn =Conexion.getInstance();
        ResultSet rs=null;
        
-       System.out.println("dato en mayuscula"+dato);
+       System.out.println("dato en mayuscula "+dato);
        
-       rs= cn.Select("SELECT nombre, apellido, codprof FROM abogado WHERE nombre LIKE '"+dato+"%'");
-       System.out.println("--- "+rs.getString(1));
+       rs= cn.Select("SELECT nombre, apellido, codprof FROM abogado WHERE apellido LIKE '%"+dato+"%' or nombre LIKE '%"+dato+"%' ");
+       
+       //System.out.println(rs.getString(1)+" esto es en abogado"); esta comentado porque no deja devolver el rs
        
        return(rs);
    }

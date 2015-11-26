@@ -6,8 +6,10 @@
 package GUIpresentacion;
 
 import com.mxrck.autocompleter.TextAutoCompleter;
+import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import javax.swing.JOptionPane;
 import logica.Abogado;
 
 /**
@@ -24,7 +26,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
      */
     public GUIConsultaAportes() {
         initComponents();
-        
+        ab=new Abogado();
         ocultar();
     }
 
@@ -47,12 +49,12 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        busatras = new javax.swing.JButton();
+        busadelante = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        codprof = new javax.swing.JTextField();
+        buscodprof = new javax.swing.JTextField();
         busnom = new javax.swing.JTextField();
-        apenom = new javax.swing.JTextField();
+        busape = new javax.swing.JTextField();
 
         setPreferredSize(new java.awt.Dimension(910, 559));
 
@@ -78,9 +80,19 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
 
         jLabel5.setText("Codigo Profesional: ");
 
-        jButton2.setText("Atras");
+        busatras.setText("Atras");
+        busatras.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busatrasActionPerformed(evt);
+            }
+        });
 
-        jButton3.setText("Adelante");
+        busadelante.setText("Adelante");
+        busadelante.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                busadelanteActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jButton4.setText("Seleccionar");
@@ -90,14 +102,14 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
             }
         });
 
-        codprof.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        codprof.setEnabled(false);
+        buscodprof.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        buscodprof.setEnabled(false);
 
         busnom.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         busnom.setEnabled(false);
 
-        apenom.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        apenom.setEnabled(false);
+        busape.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        busape.setEnabled(false);
 
         javax.swing.GroupLayout busquedaprofLayout = new javax.swing.GroupLayout(busquedaprof);
         busquedaprof.setLayout(busquedaprofLayout);
@@ -113,16 +125,16 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                             .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(codprof)
+                            .addComponent(buscodprof)
                             .addComponent(busnom)
-                            .addComponent(apenom))
+                            .addComponent(busape))
                         .addContainerGap())
                     .addGroup(busquedaprofLayout.createSequentialGroup()
-                        .addComponent(jButton2)
+                        .addComponent(busatras)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3))))
+                        .addComponent(busadelante))))
         );
         busquedaprofLayout.setVerticalGroup(
             busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -130,7 +142,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(codprof, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(buscodprof, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -138,11 +150,11 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(apenom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(busape, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(busquedaprofLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3)
+                    .addComponent(busatras)
+                    .addComponent(busadelante)
                     .addComponent(jButton4))
                 .addGap(50, 50, 50))
         );
@@ -190,15 +202,39 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
        ocultar();
     }//GEN-LAST:event_jButton4ActionPerformed
 
+    private void busadelanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busadelanteActionPerformed
+            try {
+            if (rs.isLast()) {
+                JOptionPane.showMessageDialog(null, "Final de la tabla");
+            } else {
+                rs.next();
+                mostrar();
+            }
+        } catch (Exception ex) {
+        }
+    }//GEN-LAST:event_busadelanteActionPerformed
+
+    private void busatrasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_busatrasActionPerformed
+        try {
+            if (rs.isFirst()) {
+               JOptionPane.showMessageDialog(null, "Inicio de la tabla");
+            } else {
+                rs.previous(); // ir al anterior registro
+                mostrar();
+            }
+        } catch (SQLException | HeadlessException ex) {
+        }
+    }//GEN-LAST:event_busatrasActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField apenom;
+    private javax.swing.JButton busadelante;
+    private javax.swing.JTextField busape;
+    private javax.swing.JButton busatras;
+    private javax.swing.JTextField buscodprof;
     private javax.swing.JTextField busnom;
     private javax.swing.JPanel busquedaprof;
-    private javax.swing.JTextField codprof;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -222,15 +258,22 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         
         try {
             
-            rs=ab.buscarabogado(dato); 
-           
-        } catch (ClassNotFoundException | SQLException e) {
-            
-        }
-  
-                
+           rs=ab.buscarabogado(dato);
+           rs.first();
+           mostrar();
+        } catch (ClassNotFoundException | SQLException e) {}     
     
     }
     
+    private void mostrar() {
+        try {
+            busnom.setText(rs.getString("nombre"));
+            busape.setText(rs.getString("apellido"));
+            buscodprof.setText(rs.getString("codprof"));
+            
+        } catch (Exception ex) {
+            System.err.println("Error en registro:" + ex.getMessage());
+        }
+    }
     
 }
