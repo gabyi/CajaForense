@@ -46,7 +46,7 @@ public class GUIInformeAltasBajas extends javax.swing.JPanel {
 
        
         initComponents();
-
+       
             
         initComponents();ab=new Abogado();
         tabla.setRowHeight(25);

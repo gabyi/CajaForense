@@ -9,7 +9,8 @@ import Utilidad.Utilidad;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.logging.Level;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import persistencia.Conexion;
@@ -382,16 +383,37 @@ public class Abogado extends Persona {
    public ResultSet consultaaportes(String codprof) throws ClassNotFoundException, SQLException{
        cn=Conexion.getInstance();
        ResultSet rs=null;
+       String [] fechas= Utilidad.cortarCadenaPorEspacios(fechaActual());
+       String fecha= fechas[2]+"-"+fechas[1]+"-"+fechas[0];
+       String inicioannio= fechas[2]+"-01-01";
+       System.out.println(fecha);
        
        rs=cn.Select("SELECT a.nombre AS Nombre, a.apellido AS Apelllido, a.codprof AS Codigo"
-               + ", v.materia AS Juicio, ab.porcentaje_aporte AS Porcentaje, b.monto_aportes "
-               + "AS Aporte FROM abogado a, boletas b, valorescajarentas v, abogado_has_boletas ab "
+               + ", v.materia AS juicio, ab.porcentaje_aporte AS porcentaje, b.monto_aportes AS monto, b.fecha "
+               + "AS Aporte, b.idBoletas FROM abogado a, boletas b, valorescajarentas v, abogado_has_boletas ab "
                + "WHERE a.cuil=ab.abogado_cuil AND ab.Boletas_idBoletas=b.idBoletas AND "
-               + "b.ValoresCajaRentas_id=v.id");
+               + "b.ValoresCajaRentas_id=v.id AND b.fecha >= '"+inicioannio+"' AND b.fecha <= '"+fecha+"'");
        
        if(rs.isLast())
         JOptionPane.showMessageDialog(null, "El abogado seleccionado no ha hecho aportes");
         
        return(rs);
+   }
+   
+   /**
+    * Este metodo es para traer la fecha actual des sistema en formato dd/mm/aaaa
+     * @return 
+    */
+   public String fechaActual(){
+       Calendar c1 = Calendar.getInstance();
+       Calendar c2 = new GregorianCalendar();
+       String dia = Integer.toString(c1.get(Calendar.DATE));
+       String mes = Integer.toString(c1.get(Calendar.MONTH));
+       String annio = Integer.toString(c1.get(Calendar.YEAR));
+       
+       
+       String fecha= dia+" "+mes+" "+annio;
+       
+       return (fecha);
    }
 }

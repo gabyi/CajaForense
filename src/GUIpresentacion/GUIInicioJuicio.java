@@ -23,7 +23,7 @@ import logica.Abogado;
 import logica.Afiliado;
 import logica.Demanda;
 import logica.Persona;
-
+import Utilidad.Utilidad;
 /**
  *
  * @author gabriel
@@ -45,7 +45,6 @@ Persona actor, demandado;
          afiliado=new Afiliado();
          juicio=new Demanda();
        //  ab=new Abogado();
-        fechaactual();
     }
     
     
@@ -59,7 +58,7 @@ Persona actor, demandado;
     DefaultTableModel modelo = (DefaultTableModel) tablaAsociados.getModel();
     
     String campo=texnombreJuicio.getText(),celdaNombre = "";
-    String[] celdas=Utilidad.Utilidad.cortarCadenaPorEspacios(campo);
+    String[] celdas=Utilidad.cortarCadenaPorEspacios(campo);
     int ultimoIndex=celdas.length-1,row=modelo.getRowCount()+1;
     float participacion=calcularParticipacion(modelo.getRowCount()+1);
     

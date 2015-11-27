@@ -15,6 +15,7 @@ import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -174,6 +175,55 @@ public class Utilidad {
                 rs.next();
             }
              }
+            } catch (Exception ex) {
+    
+            System.out.println("Nose pudo crear la tabla en utilidad: "+ex.getMessage());
+            return modelo;
+            }
+            return modelo;
+ 
+    }
+    
+    
+    
+    /**
+     * Metodo que construye un DefaultTableModel mediante un ResultSet. construye una tabla
+     * dependiendo de como se realice la consulta a la base de datos, cargando en el DefaultTableModel,
+     * los encabezados y datos de la consulta.
+     * @param ResultSet
+     * @return DefaultTableModel
+     */
+    public static DefaultTableModel crearTablaAportes(ResultSet rs) {
+        
+    DefaultTableModel modelo=new DefaultTableModel();
+    
+      
+      try {
+           //Creando las filas para el JTable
+          String monto, porcentaje; 
+           
+           while(rs.next()){
+               
+               monto= rs.getString("monto");
+               porcentaje= rs.getString("porcentaje");
+               Float aporte= (Float.parseFloat(monto)*Float.parseFloat(porcentaje))/100;
+               DecimalFormat formateador = new DecimalFormat("###.##");
+               String particip = formateador.format(aporte);
+               
+               modelo.addRow(new Object []{rs.getObject("fecha"),rs.getObject("idBoleta"), rs.getObject("juicio"),particip});
+   
+           }
+              //  Object[] fila = new Object[cantidadColumnas];
+              //  for (int i = 0; i < cantidadColumnas; i++) {
+               //     fila[i]=rs.getObject(i+1); 
+                
+                 
+               // modelo.addRow(fila);
+                
+                
+                
+            
+             
             } catch (Exception ex) {
     
             System.out.println("Nose pudo crear la tabla en utilidad: "+ex.getMessage());
@@ -384,5 +434,7 @@ lista.setModel(modelo);
 public static String[] cortarCadenaPorEspacios(String cadena) {
   return cadena.split("\\s+");
 }
+
+
 
 }
