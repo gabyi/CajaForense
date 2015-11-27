@@ -176,7 +176,7 @@ public class Utilidad {
              }
             } catch (Exception ex) {
     
-            System.out.println("Nose pudo crear la tabla:"+ex.getMessage());
+            System.out.println("Nose pudo crear la tabla en utilidad: "+ex.getMessage());
             return modelo;
             }
             return modelo;

@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import persistencia.Conexion;
 
 /**
@@ -378,4 +379,19 @@ public class Abogado extends Persona {
        return(rs);
    }
      
+   public ResultSet consultaaportes(String codprof) throws ClassNotFoundException, SQLException{
+       cn=Conexion.getInstance();
+       ResultSet rs=null;
+       
+       rs=cn.Select("SELECT a.nombre AS Nombre, a.apellido AS Apelllido, a.codprof AS Codigo"
+               + ", v.materia AS Juicio, ab.porcentaje_aporte AS Porcentaje, b.monto_aportes "
+               + "AS Aporte FROM abogado a, boletas b, valorescajarentas v, abogado_has_boletas ab "
+               + "WHERE a.cuil=ab.abogado_cuil AND ab.Boletas_idBoletas=b.idBoletas AND "
+               + "b.ValoresCajaRentas_id=v.id");
+       
+       if(rs.isLast())
+        JOptionPane.showMessageDialog(null, "El abogado seleccionado no ha hecho aportes");
+        
+       return(rs);
+   }
 }
