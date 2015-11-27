@@ -11,6 +11,7 @@ import com.mxrck.autocompleter.TextAutoCompleter;
 
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
+import java.awt.event.MouseListener;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
@@ -23,7 +24,7 @@ import logica.Abogado;
 import logica.Afiliado;
 import logica.Demanda;
 import logica.Persona;
-import Utilidad.Utilidad;
+
 /**
  *
  * @author gabriel
@@ -31,8 +32,8 @@ import Utilidad.Utilidad;
 public class GUIInicioJuicio extends javax.swing.JPanel {
 Afiliado afiliado;
 TextAutoCompleter nombres,juicios;
-Demanda juicio;
-
+Demanda demanda;
+ResultSet rst=null;
 Abogado ab;
 Persona actor, demandado;
     /**
@@ -43,9 +44,23 @@ Persona actor, demandado;
          actor=new Persona();
          demandado=new Persona();
          afiliado=new Afiliado();
-         juicio=new Demanda();
+         demanda=new Demanda();
        //  ab=new Abogado();
+        fechaactual();
+        
+         System.out.println("----");
+        if(this.isOpaque()){
+            System.out.println("asdasdasd");
+            texnombreJuicio.setRequestFocusEnabled(true);
+    
     }
+        
+        addMouseListener(null);
+        
+    }
+  
+   
+
     
     
     private float calcularParticipacion(int participantes){
@@ -58,7 +73,7 @@ Persona actor, demandado;
     DefaultTableModel modelo = (DefaultTableModel) tablaAsociados.getModel();
     
     String campo=texnombreJuicio.getText(),celdaNombre = "";
-    String[] celdas=Utilidad.cortarCadenaPorEspacios(campo);
+    String[] celdas=Utilidad.Utilidad.cortarCadenaPorEspacios(campo);
     int ultimoIndex=celdas.length-1,row=modelo.getRowCount()+1;
     float participacion=calcularParticipacion(modelo.getRowCount()+1);
     
@@ -153,7 +168,7 @@ Persona actor, demandado;
        try {
            ResultSet rs=null;
               System.out.println("---------: "+cadena);
-             rs=juicio.buscarDemanda(cadena);
+             rs=demanda.buscarDemanda(cadena);
            
         rs.first();  
          if(rs.getRow()>0){
@@ -186,9 +201,50 @@ Persona actor, demandado;
    demandado.set_nombre(textDemandadoNombre.getText());
    demandado.set_apellido(textDemandadoApellido.getText());
    
+   if(textmonto.getText().length()>0){
+   demanda.setMonto(Float.parseFloat(textmonto.getText()));
+   }else
+      demanda.setMonto(0);
    
    
    }
+   
+   
+   private void calcularAporte() throws ClassNotFoundException, SQLException{
+   
+   if(textjuicio.getText().length()>0 && textmonto.getText().length()>0){
+   
+   ResultSet rs=null;
+   rs=demanda.buscarDemanda(textjuicio.getText());
+   rs.first();
+   
+   if(rs!=null){
+   /////aporte
+   
+       if(rs.getObject("caja_inicio_ap_porc")==null){
+//       
+//        Float aporte = rs.getObject("caja_inicio_ap_porc")
+//           
+//       la
+       
+       
+       
+       }
+   
+   
+   
+   
+   
+   
+   
+   }
+   
+   System.out.println("row- "+rs.getString(1));
+   }
+  
+   }
+   
+   
     
   
     
@@ -228,8 +284,8 @@ Persona actor, demandado;
         labelimporteb = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jSeparator4 = new javax.swing.JSeparator();
-        labeltotala = new javax.swing.JLabel();
         labeltotalb = new javax.swing.JLabel();
+        labeltotala = new javax.swing.JLabel();
         totalgral = new javax.swing.JLabel();
         impimir = new javax.swing.JButton();
         guardar = new javax.swing.JButton();
@@ -263,7 +319,7 @@ Persona actor, demandado;
         add(labelobserv);
         labelobserv.setBounds(680, 30, 113, 22);
         add(jSeparator1);
-        jSeparator1.setBounds(100, 180, 860, 12);
+        jSeparator1.setBounds(130, 180, 830, 12);
 
         labelprof.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelprof.setText("Profesional:");
@@ -304,15 +360,15 @@ Persona actor, demandado;
         add(jScrollPane2);
         jScrollPane2.setBounds(38, 82, 580, 90);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Caratula");
         add(jLabel1);
-        jLabel1.setBounds(20, 180, 64, 22);
+        jLabel1.setBounds(20, 180, 110, 29);
 
         labelActor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelActor.setText("Actor: ");
         add(labelActor);
-        labelActor.setBounds(90, 210, 53, 22);
+        labelActor.setBounds(90, 220, 53, 22);
 
         textactorApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textactorApellido.addActionListener(new java.awt.event.ActionListener() {
@@ -326,7 +382,7 @@ Persona actor, demandado;
         labeldemandado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labeldemandado.setText("Demandado: ");
         add(labeldemandado);
-        labeldemandado.setBounds(40, 250, 106, 22);
+        labeldemandado.setBounds(40, 260, 106, 22);
 
         textDemandadoApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(textDemandadoApellido);
@@ -352,6 +408,11 @@ Persona actor, demandado;
         jLabel5.setBounds(38, 357, 62, 22);
 
         textmonto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textmonto.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                textmontoFocusLost(evt);
+            }
+        });
         add(textmonto);
         textmonto.setBounds(144, 356, 480, 23);
 
@@ -379,7 +440,8 @@ Persona actor, demandado;
         jLabel8.setBounds(38, 461, 81, 14);
 
         combojuz.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        combojuz.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combojuz.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "General Pico", "Santa Rosa", "Castex" }));
+        combojuz.setSelectedIndex(-1);
         add(combojuz);
         combojuz.setBounds(144, 424, 480, 28);
 
@@ -412,17 +474,17 @@ Persona actor, demandado;
         add(jLabel11);
         jLabel11.setBounds(680, 340, 60, 22);
         add(jSeparator4);
-        jSeparator4.setBounds(670, 320, 430, 10);
-
-        labeltotala.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labeltotala.setText("jLabel9");
-        add(labeltotala);
-        labeltotala.setBounds(850, 280, 70, 22);
+        jSeparator4.setBounds(650, 320, 310, 10);
 
         labeltotalb.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labeltotalb.setText("jLabel9");
+        labeltotalb.setText("-");
         add(labeltotalb);
-        labeltotalb.setBounds(850, 240, 70, 22);
+        labeltotalb.setBounds(850, 280, 70, 22);
+
+        labeltotala.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        labeltotala.setText("-");
+        add(labeltotala);
+        labeltotala.setBounds(850, 240, 70, 22);
 
         totalgral.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         totalgral.setText("jLabel9");
@@ -432,7 +494,7 @@ Persona actor, demandado;
         impimir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         impimir.setText("Imprimir");
         add(impimir);
-        impimir.setBounds(760, 460, 120, 31);
+        impimir.setBounds(750, 460, 99, 31);
 
         guardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         guardar.setText("Guardar");
@@ -442,12 +504,12 @@ Persona actor, demandado;
             }
         });
         add(guardar);
-        guardar.setBounds(650, 460, 110, 31);
+        guardar.setBounds(650, 460, 95, 31);
 
         cancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cancelar.setText("Cancelar");
         add(cancelar);
-        cancelar.setBounds(880, 460, 110, 31);
+        cancelar.setBounds(860, 460, 99, 31);
 
         fecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         fecha.setText("10/05/2015");
@@ -528,6 +590,18 @@ Persona actor, demandado;
         
         
     }//GEN-LAST:event_textjuicioKeyReleased
+
+    private void textmontoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_textmontoFocusLost
+    try {
+        // TODO add your handling code here:
+        calcularAporte();
+        System.out.println("Monto");
+    } catch (ClassNotFoundException ex) {
+        Logger.getLogger(GUIInicioJuicio.class.getName()).log(Level.SEVERE, null, ex);
+    } catch (SQLException ex) {
+        Logger.getLogger(GUIInicioJuicio.class.getName()).log(Level.SEVERE, null, ex);
+    }
+    }//GEN-LAST:event_textmontoFocusLost
   public void fechaactual(){
     Calendar c1 = Calendar.getInstance();
     Calendar c2 = new GregorianCalendar();
@@ -586,4 +660,10 @@ Persona actor, demandado;
     private javax.swing.JLabel titulo_altas;
     private javax.swing.JLabel totalgral;
     // End of variables declaration//GEN-END:variables
+
+    private static class addFocusListener {
+
+        public addFocusListener() {
+        }
+    }
 }
