@@ -196,12 +196,12 @@ public class Utilidad {
     public static DefaultTableModel crearTablaAportes(ResultSet rs) {
         
     DefaultTableModel modelo=new DefaultTableModel();
-    
+
       
       try {
            //Creando las filas para el JTable
           String monto, porcentaje; 
-           
+          float total=0;
            while(rs.next()){
                
                monto= rs.getString("monto");
@@ -209,20 +209,14 @@ public class Utilidad {
                Float aporte= (Float.parseFloat(monto)*Float.parseFloat(porcentaje))/100;
                DecimalFormat formateador = new DecimalFormat("###.##");
                String particip = formateador.format(aporte);
-               
+               total= total + Float.parseFloat(monto);
                modelo.addRow(new Object []{rs.getObject("fecha"),rs.getObject("idBoleta"), rs.getObject("juicio"),particip});
    
            }
               //  Object[] fila = new Object[cantidadColumnas];
               //  for (int i = 0; i < cantidadColumnas; i++) {
                //     fila[i]=rs.getObject(i+1); 
-                
-                 
-               // modelo.addRow(fila);
-                
-                
-                
-            
+                     
              
             } catch (Exception ex) {
     

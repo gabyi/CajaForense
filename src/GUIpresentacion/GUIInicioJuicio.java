@@ -300,31 +300,26 @@ Persona actor, demandado;
 
         jButton2.setText("jButton2");
 
-        setLayout(null);
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         titulo_altas.setFont(new java.awt.Font("Tahoma", 1, 16)); // NOI18N
         titulo_altas.setText("Inicio de Juicio");
-        add(titulo_altas);
-        titulo_altas.setBounds(550, 0, 121, 30);
+        add(titulo_altas, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 0, -1, 30));
 
         observaciones.setColumns(20);
         observaciones.setRows(5);
         jScrollPane1.setViewportView(observaciones);
 
-        add(jScrollPane1);
-        jScrollPane1.setBounds(650, 70, 310, 96);
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 70, 310, -1));
 
         labelobserv.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelobserv.setText("Observaciones");
-        add(labelobserv);
-        labelobserv.setBounds(680, 30, 113, 22);
-        add(jSeparator1);
-        jSeparator1.setBounds(130, 180, 830, 12);
+        add(labelobserv, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 30, -1, -1));
+        add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 180, 830, 12));
 
         labelprof.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelprof.setText("Profesional:");
-        add(labelprof);
-        labelprof.setBounds(40, 40, 92, 22);
+        add(labelprof, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 40, -1, -1));
 
         texnombreJuicio.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         texnombreJuicio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -332,8 +327,7 @@ Persona actor, demandado;
                 texnombreJuicioKeyReleased(evt);
             }
         });
-        add(texnombreJuicio);
-        texnombreJuicio.setBounds(140, 40, 322, 30);
+        add(texnombreJuicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 322, 30));
 
         jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jButton1.setText("Agregar");
@@ -342,8 +336,7 @@ Persona actor, demandado;
                 jButton1ActionPerformed(evt);
             }
         });
-        add(jButton1);
-        jButton1.setBounds(500, 40, 117, 31);
+        add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 40, 117, -1));
 
         tablaAsociados.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -357,18 +350,15 @@ Persona actor, demandado;
         jScrollPane2.setViewportView(tablaAsociados);
         tablaAsociados.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        add(jScrollPane2);
-        jScrollPane2.setBounds(38, 82, 580, 90);
+        add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 82, 580, 90));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Caratula");
-        add(jLabel1);
-        jLabel1.setBounds(20, 180, 110, 29);
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 110, -1));
 
         labelActor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelActor.setText("Actor: ");
-        add(labelActor);
-        labelActor.setBounds(90, 220, 53, 22);
+        add(labelActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
         textactorApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textactorApellido.addActionListener(new java.awt.event.ActionListener() {
@@ -376,22 +366,18 @@ Persona actor, demandado;
                 textactorApellidoActionPerformed(evt);
             }
         });
-        add(textactorApellido);
-        textactorApellido.setBounds(210, 208, 143, 28);
+        add(textactorApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 208, 143, -1));
 
         labeldemandado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labeldemandado.setText("Demandado: ");
-        add(labeldemandado);
-        labeldemandado.setBounds(40, 260, 106, 22);
+        add(labeldemandado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
         textDemandadoApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(textDemandadoApellido);
-        textDemandadoApellido.setBounds(209, 257, 144, 28);
+        add(textDemandadoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 257, 144, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Juicio: ");
-        add(jLabel4);
-        jLabel4.setBounds(38, 320, 56, 22);
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 320, -1, -1));
 
         textjuicio.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textjuicio.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -399,13 +385,11 @@ Persona actor, demandado;
                 textjuicioKeyReleased(evt);
             }
         });
-        add(textjuicio);
-        textjuicio.setBounds(144, 321, 480, 23);
+        add(textjuicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 321, 480, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel5.setText("Monto: ");
-        add(jLabel5);
-        jLabel5.setBounds(38, 357, 62, 22);
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 357, -1, -1));
 
         textmonto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textmonto.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -413,88 +397,70 @@ Persona actor, demandado;
                 textmontoFocusLost(evt);
             }
         });
-        add(textmonto);
-        textmonto.setBounds(144, 356, 480, 23);
+        add(textmonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 356, 480, 23));
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Expediente: ");
-        add(jLabel6);
-        jLabel6.setBounds(38, 390, 98, 22);
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 390, -1, -1));
 
         textexpte.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(textexpte);
-        textexpte.setBounds(144, 390, 480, 23);
+        add(textexpte, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 390, 480, 23));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Juzgado: ");
-        add(jLabel7);
-        jLabel7.setBounds(38, 427, 77, 22);
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 427, -1, -1));
 
         textautos.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(textautos);
-        textautos.setBounds(144, 461, 480, 28);
+        add(textautos, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 461, 480, -1));
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel8.setText("En autos: ");
-        add(jLabel8);
-        jLabel8.setBounds(38, 461, 81, 14);
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 461, -1, 14));
 
         combojuz.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         combojuz.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "General Pico", "Santa Rosa", "Castex" }));
         combojuz.setSelectedIndex(-1);
-        add(combojuz);
-        combojuz.setBounds(144, 424, 480, 28);
+        add(combojuz, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 424, 480, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel2.setText("Fecha: ");
-        add(jLabel2);
-        jLabel2.setBounds(910, 10, 57, 22);
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 0, -1, -1));
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        add(jSeparator3);
-        jSeparator3.setBounds(640, 29, 16, 570);
+        add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(640, 29, 16, 570));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel3.setText("Importes a pagar");
-        add(jLabel3);
-        jLabel3.setBounds(650, 200, 136, 22);
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 200, -1, -1));
 
         labelimportea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelimportea.setText("Art 41 inciso a) Ley 1861 $");
-        add(labelimportea);
-        labelimportea.setBounds(670, 240, 220, 17);
+        add(labelimportea, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 220, -1));
 
         labelimporteb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelimporteb.setText("Art 41 inciso b) Ley 1861 $");
-        add(labelimporteb);
-        labelimporteb.setBounds(670, 280, 220, 17);
+        add(labelimporteb, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 280, 220, -1));
 
         jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel11.setText("Total $");
-        add(jLabel11);
-        jLabel11.setBounds(680, 340, 60, 22);
-        add(jSeparator4);
-        jSeparator4.setBounds(650, 320, 310, 10);
+        add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 340, 60, -1));
+        add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(650, 320, 310, 10));
 
         labeltotalb.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labeltotalb.setText("-");
-        add(labeltotalb);
-        labeltotalb.setBounds(850, 280, 70, 22);
+        add(labeltotalb, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 280, 70, -1));
 
         labeltotala.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labeltotala.setText("-");
-        add(labeltotala);
-        labeltotala.setBounds(850, 240, 70, 22);
+        add(labeltotala, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 70, -1));
 
         totalgral.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         totalgral.setText("jLabel9");
-        add(totalgral);
-        totalgral.setBounds(750, 340, 100, 22);
+        add(totalgral, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 340, 100, -1));
 
         impimir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         impimir.setText("Imprimir");
-        add(impimir);
-        impimir.setBounds(750, 460, 99, 31);
+        add(impimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 460, -1, -1));
 
         guardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         guardar.setText("Guardar");
@@ -503,22 +469,18 @@ Persona actor, demandado;
                 guardarActionPerformed(evt);
             }
         });
-        add(guardar);
-        guardar.setBounds(650, 460, 95, 31);
+        add(guardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 460, -1, -1));
 
         cancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cancelar.setText("Cancelar");
-        add(cancelar);
-        cancelar.setBounds(860, 460, 99, 31);
+        add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(870, 460, -1, -1));
 
         fecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         fecha.setText("10/05/2015");
-        add(fecha);
-        fecha.setBounds(990, 10, 94, 22);
+        add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 100, -1));
 
         jLabel9.setText("Apellido");
-        add(jLabel9);
-        jLabel9.setBounds(156, 218, 50, 14);
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 218, 50, -1));
 
         texActorNombre.setFont(new java.awt.Font("Tahoma", 0, 18));
         texActorNombre.addActionListener(new java.awt.event.ActionListener() {
@@ -526,28 +488,23 @@ Persona actor, demandado;
                 texActorNombreActionPerformed(evt);
             }
         });
-        add(texActorNombre);
-        texActorNombre.setBounds(430, 210, 166, 28);
+        add(texActorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 166, 28));
 
         jLabel10.setText(" Nombre");
-        add(jLabel10);
-        jLabel10.setBounds(370, 210, 47, 20);
+        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 47, 20));
 
         jLabel12.setText("Apellido");
-        add(jLabel12);
-        jLabel12.setBounds(162, 267, 37, 14);
+        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 267, -1, -1));
 
         textDemandadoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textDemandadoNombreActionPerformed(evt);
             }
         });
-        add(textDemandadoNombre);
-        textDemandadoNombre.setBounds(430, 257, 166, 30);
+        add(textDemandadoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 257, 166, 30));
 
         jLabel13.setText(" Nombre");
-        add(jLabel13);
-        jLabel13.setBounds(379, 267, 47, 14);
+        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 267, 47, -1));
     }// </editor-fold>//GEN-END:initComponents
 
     private void texnombreJuicioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texnombreJuicioKeyReleased
@@ -610,6 +567,7 @@ Persona actor, demandado;
     String annio = Integer.toString(c1.get(Calendar.YEAR));
     
     fecha.setText(dia+"/"+mes+"/"+annio);
+      
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

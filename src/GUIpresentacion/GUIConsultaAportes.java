@@ -26,6 +26,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     ResultSet rs;
     String dato;
     TextAutoCompleter abnombres;
+    Float totalAportes;
     /**
      * Creates new form GUIConsultaAportes
      */
@@ -53,6 +54,8 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         buscar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaaportes = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        ltotal = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(910, 559));
 
@@ -87,10 +90,17 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         ));
         jScrollPane2.setViewportView(tablaaportes);
 
+        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel2.setText("Total de Aportes:  $");
+
+        ltotal.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        ltotal.setText("0,00");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane2)
             .addGroup(layout.createSequentialGroup()
                 .addGap(65, 65, 65)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -102,7 +112,12 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(buscar)
                 .addContainerGap(129, Short.MAX_VALUE))
-            .addComponent(jScrollPane2)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(ltotal, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(289, 289, 289))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,8 +133,12 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                                 .addComponent(texnombre)
                                 .addComponent(buscar)))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 67, Short.MAX_VALUE)
-                .addGap(340, 340, 340))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(ltotal))
+                .addGap(308, 308, 308))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -150,7 +169,9 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buscar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel ltotal;
     private javax.swing.JTable tablaaportes;
     private javax.swing.JTextField texnombre;
     private javax.swing.JLabel titulo_altas;
@@ -188,7 +209,21 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
             
           
             return(table);
-        }
+  }
+  
+  
+  public void totalanual(){
+      int cant= tablaaportes.getRowCount();
+      float total=0;
+      
+      for (int i = 0; i < cant; i++) {
+          total= (Float)tablaaportes.getValueAt(i,3)+ total;
+      }
+      
+     ltotal.setText(String.valueOf(total));
+      
+  }
+  
   
   public void autocompletarAfiliado() {
    abnombres= new TextAutoCompleter(texnombre);

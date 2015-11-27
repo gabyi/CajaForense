@@ -14,7 +14,7 @@ import java.util.logging.Logger;
 
 public class Conexion {
     
-    static Connection con; // atribut per a guardar l’objecte connexió.
+    static Connection con; 
     private static Conexion INSTANCE = null;
 
    Statement stm;
