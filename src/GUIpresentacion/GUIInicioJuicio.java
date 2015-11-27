@@ -78,7 +78,7 @@ Persona actor, demandado;
     
     
     for(int j = 0;j<modelo.getRowCount();j++ ){
-    modelo.setValueAt(particip,j, modelo.findColumn("Participacion"));
+    modelo.setValueAt(particip,j, modelo.findColumn("Participacion (%)"));
     
     
     }
