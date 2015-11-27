@@ -433,7 +433,7 @@ Persona actor, demandado;
         impimir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         impimir.setText("Imprimir");
         add(impimir);
-        impimir.setBounds(750, 460, 99, 31);
+        impimir.setBounds(760, 460, 120, 31);
 
         guardar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         guardar.setText("Guardar");
@@ -443,12 +443,12 @@ Persona actor, demandado;
             }
         });
         add(guardar);
-        guardar.setBounds(650, 460, 95, 31);
+        guardar.setBounds(650, 460, 110, 31);
 
         cancelar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         cancelar.setText("Cancelar");
         add(cancelar);
-        cancelar.setBounds(860, 460, 99, 31);
+        cancelar.setBounds(880, 460, 110, 31);
 
         fecha.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         fecha.setText("10/05/2015");
