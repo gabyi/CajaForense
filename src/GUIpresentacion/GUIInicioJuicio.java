@@ -17,6 +17,7 @@ import java.sql.SQLException;
 import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +37,8 @@ Demanda demanda;
 ResultSet rst=null;
 Abogado ab;
 Persona actor, demandado;
+Vector <Afiliado> afiliadoArray;
+
     /**
      * Creates new form GUIInicioJuicio
      */
@@ -44,6 +47,7 @@ Persona actor, demandado;
          actor=new Persona();
          demandado=new Persona();
          afiliado=new Afiliado();
+         afiliadoArray=new Vector<Afiliado>() ;
          demanda=new Demanda();
        //  ab=new Abogado();
         fechaactual();
@@ -63,12 +67,13 @@ Persona actor, demandado;
 
     
     
-    private float calcularParticipacion(int participantes){
+     private float calcularParticipacion(int participantes){
     
     return 100/(float)participantes;
     }
     
     public void addAfiliado(){
+      afiliado=new Afiliado();
         
     DefaultTableModel modelo = (DefaultTableModel) tablaAsociados.getModel();
     
@@ -78,7 +83,7 @@ Persona actor, demandado;
     float participacion=calcularParticipacion(modelo.getRowCount()+1);
     
    
-    DecimalFormat formateador = new DecimalFormat("###.##");
+    DecimalFormat formateador = new DecimalFormat("######");
 
  String particip = formateador.format(participacion);
     
@@ -89,7 +94,11 @@ Persona actor, demandado;
     for(int i=0;i<celdas.length-1;i++){
     celdaNombre=celdaNombre+" "+celdas[i];
         }
-    
+       
+    afiliado.setCod_profecional(celdas[ultimoIndex].toString());
+    afiliado.setPorcentaje_en_boleta_inicio(Float.parseFloat(particip));
+    afiliadoArray.addElement(afiliado);
+   System.out.println("-----"+afiliado.getCod_profecional());
     
     for(int j = 0;j<modelo.getRowCount();j++ ){
     modelo.setValueAt(particip,j, modelo.findColumn("Participacion (%)"));
@@ -191,7 +200,7 @@ Persona actor, demandado;
     
     
     
-   private void guardarInicioJuicio(){
+   private void guardarInicioJuicio() throws ClassNotFoundException, SQLException{
    // String 
      actor.set_nombre(texActorNombre.getText());
      demandado.set_nombre(textDemandadoNombre.getText());
@@ -202,14 +211,16 @@ Persona actor, demandado;
    
    if(textmonto.getText().length()>0){
    demanda.setMonto(Float.parseFloat(textmonto.getText()));
-   demanda.setCaja_inicio_ap(true);
-   
-   }else
+   //demanda.setCaja_inicio_ap(true);
+   demanda.setCaja_inicio_ap(Float.parseFloat(labeltotala.getText()));
+   demanda.setCaja_inicio_cont(Float.parseFloat(labeltotalb.getText()));
+   }else{
       demanda.setMonto(0);
+    demanda.setCaja_inicio_ap(0);
+   demanda.setCaja_inicio_cont(0);
+   }
    
-   
-   
-//   demanda.guardarDamanda(afiliado,demandado,actor);
+   demanda.guardarDamanda(afiliadoArray,demandado,actor);
    
    
    
@@ -265,7 +276,7 @@ Persona actor, demandado;
        }
    
       
-    DecimalFormat formateador = new DecimalFormat("###.##");
+    DecimalFormat formateador = new DecimalFormat("######");
     String valor = formateador.format(aporte);
    
    labeltotala.setText(String.valueOf(valor));//aporte
@@ -395,29 +406,12 @@ Persona actor, demandado;
 
         labelActor.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labelActor.setText("Actor: ");
-        add(labelActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
+        add(labelActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 230, -1, -1));
 
-<<<<<<< HEAD
-=======
-        textactorApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        textactorApellido.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textactorApellidoActionPerformed(evt);
-            }
-        });
-        add(textactorApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 208, 143, -1));
-
->>>>>>> origin/master
         labeldemandado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labeldemandado.setText("Demandado: ");
-        add(labeldemandado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
+        add(labeldemandado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, -1, -1));
 
-<<<<<<< HEAD
-=======
-        textDemandadoApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        add(textDemandadoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 257, 144, -1));
-
->>>>>>> origin/master
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Juicio: ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 320, -1, -1));
@@ -431,10 +425,10 @@ Persona actor, demandado;
         add(textjuicio, new org.netbeans.lib.awtextra.AbsoluteConstraints(144, 321, 480, -1));
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Monto: ");
+        jLabel5.setText("Monto $ ");
         add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 357, -1, -1));
 
-        textmonto.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        textmonto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textmonto.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 textmontoFocusLost(evt);
@@ -478,12 +472,7 @@ Persona actor, demandado;
 
         labelimportea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelimportea.setText("Art 41 inciso a) Ley 1861 $");
-<<<<<<< HEAD
-        add(labelimportea);
-        labelimportea.setBounds(670, 240, 170, 17);
-=======
         add(labelimportea, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 220, -1));
->>>>>>> origin/master
 
         labelimporteb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelimporteb.setText("Art 41 inciso b) Ley 1861 $");
@@ -496,20 +485,6 @@ Persona actor, demandado;
 
         labeltotalb.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labeltotalb.setText("-");
-<<<<<<< HEAD
-        add(labeltotalb);
-        labeltotalb.setBounds(850, 280, 110, 22);
-
-        labeltotala.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labeltotala.setText("-");
-        add(labeltotala);
-        labeltotala.setBounds(850, 240, 110, 22);
-
-        totalgral.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        totalgral.setText("-");
-        add(totalgral);
-        totalgral.setBounds(770, 340, 150, 22);
-=======
         add(labeltotalb, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 280, 70, -1));
 
         labeltotala.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -517,9 +492,8 @@ Persona actor, demandado;
         add(labeltotala, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 240, 70, -1));
 
         totalgral.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        totalgral.setText("jLabel9");
+        totalgral.setText("-");
         add(totalgral, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 340, 100, -1));
->>>>>>> origin/master
 
         impimir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         impimir.setText("Imprimir");
@@ -542,45 +516,22 @@ Persona actor, demandado;
         fecha.setText("10/05/2015");
         add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 100, -1));
 
-<<<<<<< HEAD
-=======
-        jLabel9.setText("Apellido");
-        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 218, 50, -1));
-
->>>>>>> origin/master
         texActorNombre.setFont(new java.awt.Font("Tahoma", 0, 18));
+        texActorNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         texActorNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 texActorNombreActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
-        add(texActorNombre);
-        texActorNombre.setBounds(160, 220, 440, 28);
-=======
-        add(texActorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 166, 28));
+        add(texActorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 230, 470, 28));
 
-        jLabel10.setText(" Nombre");
-        add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, 47, 20));
-
-        jLabel12.setText("Apellido");
-        add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 267, -1, -1));
->>>>>>> origin/master
-
+        textDemandadoNombre.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         textDemandadoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textDemandadoNombreActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
-        add(textDemandadoNombre);
-        textDemandadoNombre.setBounds(156, 257, 450, 30);
-=======
-        add(textDemandadoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 257, 166, 30));
-
-        jLabel13.setText(" Nombre");
-        add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 267, 47, -1));
->>>>>>> origin/master
+        add(textDemandadoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 470, 30));
     }// </editor-fold>//GEN-END:initComponents
 
     private void texnombreJuicioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texnombreJuicioKeyReleased
@@ -599,9 +550,13 @@ Persona actor, demandado;
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void guardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_guardarActionPerformed
+    try {
         // TODO add your handling code here:
         
         guardarInicioJuicio();
+    } catch (ClassNotFoundException | SQLException ex) {  Logger.getLogger(GUIInicioJuicio.class.getName()).log(Level.SEVERE, null, ex);
+       
+    }
     }//GEN-LAST:event_guardarActionPerformed
 
     private void texActorNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_texActorNombreActionPerformed
@@ -625,13 +580,11 @@ Persona actor, demandado;
         // TODO add your handling code here:
         calcularAporte();
         System.out.println("Monto");
-    } catch (ClassNotFoundException ex) {
-        Logger.getLogger(GUIInicioJuicio.class.getName()).log(Level.SEVERE, null, ex);
-    } catch (SQLException ex) {
+    } catch (ClassNotFoundException | SQLException ex) {
         Logger.getLogger(GUIInicioJuicio.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_textmontoFocusLost
-  public String fechaactual(){
+public String fechaactual(){
     Calendar c1 = Calendar.getInstance();
     Calendar c2 = new GregorianCalendar();
     String dia = Integer.toString(c1.get(Calendar.DATE));
@@ -639,14 +592,9 @@ Persona actor, demandado;
     String annio = Integer.toString(c1.get(Calendar.YEAR));
     
     fecha.setText(dia+"/"+mes+"/"+annio);
-<<<<<<< HEAD
     
     return annio+'-'+mes+'-'+dia;
-    
-=======
-      
->>>>>>> origin/master
-    }
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelar;
