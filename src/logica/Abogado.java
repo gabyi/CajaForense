@@ -386,16 +386,22 @@ public class Abogado extends Persona {
        String [] fechas= Utilidad.cortarCadenaPorEspacios(fechaActual());
        String fecha= fechas[2]+"-"+fechas[1]+"-"+fechas[0];
        String inicioannio= fechas[2]+"-01-01";
-       System.out.println(fecha);
+       String [] cadena= Utilidad.cortarCadenaPorEspacios(codprof);
+       
+       System.out.println(cadena[cadena.length -1]);
+       codprof=cadena[cadena.length -1];
+       System.out.println(codprof);
+       System.out.println("Fecha actual: "+fecha);
+       System.out.println("Fecha inicio año: "+ inicioannio);
        
        rs=cn.Select("SELECT a.nombre AS Nombre, a.apellido AS Apelllido, a.codprof AS Codigo"
                + ", v.materia AS juicio, ab.porcentaje_aporte AS porcentaje, b.monto_aportes AS monto, b.fecha "
-               + "AS Aporte, b.idBoletas FROM abogado a, boletas b, valorescajarentas v, abogado_has_boletas ab "
-               + "WHERE a.cuil=ab.abogado_cuil AND ab.Boletas_idBoletas=b.idBoletas AND "
+               + "AS fecha, b.idBoletas AS idBoleta FROM abogado a, boletas b, valorescajarentas v, abogado_has_boletas ab "
+               + "WHERE a.codprof='"+codprof+"' AND a.cuil=ab.abogado_cuil AND ab.Boletas_idBoletas=b.idBoletas AND "
                + "b.ValoresCajaRentas_id=v.id AND b.fecha >= '"+inicioannio+"' AND b.fecha <= '"+fecha+"'");
        
-       if(rs.isLast())
-        JOptionPane.showMessageDialog(null, "El abogado seleccionado no ha hecho aportes");
+       if(rs.next())
+           System.out.println("\"El abogado seleccionado ha hecho aportes mensaje abogado\"");
         
        return(rs);
    }
@@ -408,7 +414,7 @@ public class Abogado extends Persona {
        Calendar c1 = Calendar.getInstance();
        Calendar c2 = new GregorianCalendar();
        String dia = Integer.toString(c1.get(Calendar.DATE));
-       String mes = Integer.toString(c1.get(Calendar.MONTH));
+       String mes = Integer.toString(c1.get(Calendar.MONTH)+1);
        String annio = Integer.toString(c1.get(Calendar.YEAR));
        
        

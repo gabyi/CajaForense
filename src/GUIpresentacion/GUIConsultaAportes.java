@@ -25,7 +25,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     ResultSet rs;
     String dato;
     TextAutoCompleter abnombres;
-    Float totalAportes;
+    float totalAportes=0;
     /**
      * Creates new form GUIConsultaAportes
      */
@@ -129,8 +129,8 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                                 .addComponent(texnombre)
                                 .addComponent(buscar)))))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(ltotal))
@@ -150,6 +150,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
         texnombre.setEditable(false);
         buscar.setText("Volver a Buscar");
         llenartabla();
+        totalanual();
         }else{
         texnombre.setEditable(true);
         texnombre.setText("");
@@ -158,7 +159,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     }//GEN-LAST:event_buscarActionPerformed
 
     private void texnombreKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texnombreKeyReleased
-        autocompletarAfiliado();
+        autocompletarAbogado();
     }//GEN-LAST:event_texnombreKeyReleased
 
 
@@ -173,7 +174,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     private javax.swing.JLabel titulo_altas;
     // End of variables declaration//GEN-END:variables
   
-  public DefaultTableModel llenartabla (){        
+  public void llenartabla (){        
 
         DefaultTableModel table = new DefaultTableModel();
         
@@ -181,35 +182,32 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
                 
             try {
                 rs=ab.consultaaportes(texnombre.getText());
-                if(!rs.next())
-                 JOptionPane.showMessageDialog(null, "El Abogado no tiene Aportes este año");  
-                else
-                 table=Utilidad.crearTablaAportes(rs);
-                       
+                table=Utilidad.crearTablaAportes(rs, (DefaultTableModel) tablaaportes.getModel());
+                
             } catch (ClassNotFoundException | SQLException ex) {
                 Logger.getLogger(GUIInformeAltasBajas.class.getName()).log(Level.SEVERE, null, ex);
                 
             }
             
-          
-            return(table);
+            tablaaportes.setModel(table);
   }
   
   
   public void totalanual(){
       int cant= tablaaportes.getRowCount();
-      float total=0;
+      System.out.println(cant+"cantidad de filas en consulta aportes");
       
       for (int i = 0; i < cant; i++) {
-          total= (Float)tablaaportes.getValueAt(i,3)+ total;
+          totalAportes+= Float.parseFloat((String) tablaaportes.getValueAt(i,3));
       }
       
-     ltotal.setText(String.valueOf(total));
-      
+     ltotal.setText(String.valueOf(totalAportes));
+      System.out.println(totalAportes); 
+      System.out.println(tablaaportes.getValueAt(0,3));
   }
   
   
-  public void autocompletarAfiliado() {
+  public void autocompletarAbogado() {
    abnombres= new TextAutoCompleter(texnombre);
         
          String cadena = texnombre.getText();
