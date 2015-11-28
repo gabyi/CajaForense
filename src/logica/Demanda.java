@@ -25,6 +25,16 @@ public class Demanda {
 	private float monto;
 	public Persona actor;
 	public Persona demandado;
+        String fecha;
+
+    public String getFecha() {
+        return fecha;
+    }
+
+    public void setFecha(String fecha) {
+        this.fecha = fecha;
+    }
+        
 
     public boolean isCaja_inicio_ap() {
         return caja_inicio_ap;
@@ -116,15 +126,7 @@ public class Demanda {
                
      rs= cn.Select("SELECT * FROM valorescajarentas WHERE materia LIKE '"+aux+"'");
           System.out.println("leng .... 1 "+dato);
-       
-//       }
-//       if(cadena.length>1){
-//           
-//           System.out.println("leng > 1 "+cadena[0]);
-//       rs= cn.Select("SELECT nombre, apellido, codprof FROM abogado WHERE nombre LIKE '%"+cadena[1]+"%' and apellido "
-//               + "LIKE '%"+cadena[0]+"%' OR apellido LIKE '%"+cadena[1]+"%' and nombre LIKE '%"+cadena[0]+"%'");
-//       
-//       }
+
        
        if(rs.getRow()>0){
        rs.first();
@@ -135,5 +137,18 @@ public class Demanda {
    
    }
         
+  public void guardarDamanda(Afiliado afiliado,Persona demandado,Persona actor) throws ClassNotFoundException, SQLException{
+  
+     Conexion cn = Conexion.getInstance();
+     ResultSet rs=null;
+     
+       // rs=cn.Select("")
+  
+     
+         cn.Insert("INSERT INTO `boletas` (`idBoletas`, `ValoresCajaRentas_id`, `fecha`, `monto_juicio`, `monto_aportes`, `monto_contrubu`, `actor`, `demandado`) "
+                 + "VALUES ('SELECT COUNT(`idBoletas`) FROM `boletas`'+1, '"+id+"','"+fecha+"','"+monto+"', '"+caja_inicio_ap+"', '"+caja_inicio_cont+"', '"+actor.get_nombre()+"', '"+demandado.get_nombre()+"')");
+          //System.out.println("leng .... 1 "+dato);
+     
+  }
         
 }

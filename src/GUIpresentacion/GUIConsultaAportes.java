@@ -7,7 +7,6 @@ package GUIpresentacion;
 
 import Utilidad.Utilidad;
 import com.mxrck.autocompleter.TextAutoCompleter;
-import java.awt.HeadlessException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -33,11 +32,8 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     public GUIConsultaAportes() {
         initComponents();
         ab=new Abogado();
-        ocultarTabla();
         texnombre.requestFocus();
     }
-
-
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -176,20 +172,8 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
     private javax.swing.JTextField texnombre;
     private javax.swing.JLabel titulo_altas;
     // End of variables declaration//GEN-END:variables
-
-
-    private void ocultarTabla(){
-        tablaaportes.setVisible(false);
-    }
-    
-    private void mostrarTabla(){
-        tablaaportes.setVisible(true);
-    }
-    
-
-    
-  public DefaultTableModel llenartabla (){
-        
+  
+  public DefaultTableModel llenartabla (){        
 
         DefaultTableModel table = new DefaultTableModel();
         
