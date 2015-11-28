@@ -21,8 +21,6 @@ public class Demanda {
 
 	private float caja_inicio_ap;
 	private float caja_inicio_cont;
-	private float caja_inicio_prop_ap;
-	private float caja_inicio_prop_cont;
 	private int id;
 	private String materia;
 	private float monto;
@@ -55,21 +53,7 @@ public class Demanda {
         this.caja_inicio_cont = caja_inicio_cont;
     }
 
-    public float getCaja_inicio_prop_ap() {
-        return caja_inicio_prop_ap;
-    }
 
-    public void setCaja_inicio_prop_ap(float caja_inicio_prop_ap) {
-        this.caja_inicio_prop_ap = caja_inicio_prop_ap;
-    }
-
-    public float getCaja_inicio_prop_cont() {
-        return caja_inicio_prop_cont;
-    }
-
-    public void setCaja_inicio_prop_cont(float caja_inicio_prop_cont) {
-        this.caja_inicio_prop_cont = caja_inicio_prop_cont;
-    }
 
     public int getId() {
         return id;
