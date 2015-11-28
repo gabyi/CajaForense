@@ -63,7 +63,7 @@ Persona actor, demandado;
 
     
     
-    private float calcularParticipacion(int participantes){
+     private float calcularParticipacion(int participantes){
     
     return 100/(float)participantes;
     }
@@ -307,7 +307,9 @@ Persona actor, demandado;
         tablaAsociados = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         labelActor = new javax.swing.JLabel();
+        textactorApellido = new javax.swing.JTextField();
         labeldemandado = new javax.swing.JLabel();
+        textDemandadoApellido = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         textjuicio = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -332,8 +334,12 @@ Persona actor, demandado;
         guardar = new javax.swing.JButton();
         cancelar = new javax.swing.JButton();
         fecha = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
         texActorNombre = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         textDemandadoNombre = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
 
         jButton2.setText("jButton2");
 
@@ -397,8 +403,6 @@ Persona actor, demandado;
         labelActor.setText("Actor: ");
         add(labelActor, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 220, -1, -1));
 
-<<<<<<< HEAD
-=======
         textactorApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         textactorApellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -407,17 +411,13 @@ Persona actor, demandado;
         });
         add(textactorApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 208, 143, -1));
 
->>>>>>> origin/master
         labeldemandado.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labeldemandado.setText("Demandado: ");
         add(labeldemandado, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 260, -1, -1));
 
-<<<<<<< HEAD
-=======
         textDemandadoApellido.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         add(textDemandadoApellido, new org.netbeans.lib.awtextra.AbsoluteConstraints(209, 257, 144, -1));
 
->>>>>>> origin/master
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel4.setText("Juicio: ");
         add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(38, 320, -1, -1));
@@ -478,12 +478,7 @@ Persona actor, demandado;
 
         labelimportea.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelimportea.setText("Art 41 inciso a) Ley 1861 $");
-<<<<<<< HEAD
-        add(labelimportea);
-        labelimportea.setBounds(670, 240, 170, 17);
-=======
         add(labelimportea, new org.netbeans.lib.awtextra.AbsoluteConstraints(670, 240, 220, -1));
->>>>>>> origin/master
 
         labelimporteb.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         labelimporteb.setText("Art 41 inciso b) Ley 1861 $");
@@ -496,20 +491,6 @@ Persona actor, demandado;
 
         labeltotalb.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         labeltotalb.setText("-");
-<<<<<<< HEAD
-        add(labeltotalb);
-        labeltotalb.setBounds(850, 280, 110, 22);
-
-        labeltotala.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        labeltotala.setText("-");
-        add(labeltotala);
-        labeltotala.setBounds(850, 240, 110, 22);
-
-        totalgral.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        totalgral.setText("-");
-        add(totalgral);
-        totalgral.setBounds(770, 340, 150, 22);
-=======
         add(labeltotalb, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 280, 70, -1));
 
         labeltotala.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -519,7 +500,6 @@ Persona actor, demandado;
         totalgral.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         totalgral.setText("jLabel9");
         add(totalgral, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 340, 100, -1));
->>>>>>> origin/master
 
         impimir.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         impimir.setText("Imprimir");
@@ -542,22 +522,15 @@ Persona actor, demandado;
         fecha.setText("10/05/2015");
         add(fecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 0, 100, -1));
 
-<<<<<<< HEAD
-=======
         jLabel9.setText("Apellido");
         add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(156, 218, 50, -1));
 
->>>>>>> origin/master
         texActorNombre.setFont(new java.awt.Font("Tahoma", 0, 18));
         texActorNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 texActorNombreActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
-        add(texActorNombre);
-        texActorNombre.setBounds(160, 220, 440, 28);
-=======
         add(texActorNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 210, 166, 28));
 
         jLabel10.setText(" Nombre");
@@ -565,22 +538,16 @@ Persona actor, demandado;
 
         jLabel12.setText("Apellido");
         add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(162, 267, -1, -1));
->>>>>>> origin/master
 
         textDemandadoNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textDemandadoNombreActionPerformed(evt);
             }
         });
-<<<<<<< HEAD
-        add(textDemandadoNombre);
-        textDemandadoNombre.setBounds(156, 257, 450, 30);
-=======
         add(textDemandadoNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 257, 166, 30));
 
         jLabel13.setText(" Nombre");
         add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(379, 267, 47, -1));
->>>>>>> origin/master
     }// </editor-fold>//GEN-END:initComponents
 
     private void texnombreJuicioKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_texnombreJuicioKeyReleased
@@ -608,6 +575,10 @@ Persona actor, demandado;
         // TODO add your handling code here:
     }//GEN-LAST:event_texActorNombreActionPerformed
 
+    private void textactorApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textactorApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textactorApellidoActionPerformed
+
     private void textDemandadoNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textDemandadoNombreActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_textDemandadoNombreActionPerformed
@@ -631,7 +602,7 @@ Persona actor, demandado;
         Logger.getLogger(GUIInicioJuicio.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_textmontoFocusLost
-  public String fechaactual(){
+public String fechaactual(){
     Calendar c1 = Calendar.getInstance();
     Calendar c2 = new GregorianCalendar();
     String dia = Integer.toString(c1.get(Calendar.DATE));
@@ -639,14 +610,9 @@ Persona actor, demandado;
     String annio = Integer.toString(c1.get(Calendar.YEAR));
     
     fecha.setText(dia+"/"+mes+"/"+annio);
-<<<<<<< HEAD
     
     return annio+'-'+mes+'-'+dia;
-    
-=======
-      
->>>>>>> origin/master
-    }
+      }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelar;
@@ -657,7 +623,10 @@ Persona actor, demandado;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -665,6 +634,7 @@ Persona actor, demandado;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
@@ -682,7 +652,9 @@ Persona actor, demandado;
     private javax.swing.JTable tablaAsociados;
     private javax.swing.JTextField texActorNombre;
     private javax.swing.JTextField texnombreJuicio;
+    private javax.swing.JTextField textDemandadoApellido;
     private javax.swing.JTextField textDemandadoNombre;
+    private javax.swing.JTextField textactorApellido;
     private javax.swing.JTextField textautos;
     private javax.swing.JTextField textexpte;
     private javax.swing.JTextField textjuicio;
