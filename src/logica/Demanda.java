@@ -8,7 +8,6 @@ package logica;
 import Utilidad.Utilidad;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Vector;
 import persistencia.Conexion;
 
 /**
@@ -16,11 +15,9 @@ import persistencia.Conexion;
  * @author jau
  */
 public class Demanda {
-    
-    Conexion cn ;
 
-	private float caja_inicio_ap;
-	private float caja_inicio_cont;
+	private boolean caja_inicio_ap;
+	private boolean caja_inicio_cont;
 	private float caja_inicio_prop_ap;
 	private float caja_inicio_prop_cont;
 	private int id;
@@ -39,19 +36,19 @@ public class Demanda {
     }
         
 
-    public float isCaja_inicio_ap() {
+    public boolean isCaja_inicio_ap() {
         return caja_inicio_ap;
     }
 
-    public void setCaja_inicio_ap(float caja_inicio_ap) {
+    public void setCaja_inicio_ap(boolean caja_inicio_ap) {
         this.caja_inicio_ap = caja_inicio_ap;
     }
 
-    public float isCaja_inicio_cont() {
+    public boolean isCaja_inicio_cont() {
         return caja_inicio_cont;
     }
 
-    public void setCaja_inicio_cont(float caja_inicio_cont) {
+    public void setCaja_inicio_cont(boolean caja_inicio_cont) {
         this.caja_inicio_cont = caja_inicio_cont;
     }
 
@@ -140,40 +137,18 @@ public class Demanda {
    
    }
         
-  public void guardarDamanda(Vector <Afiliado> afiliado,Persona demandado,Persona actor) throws ClassNotFoundException, SQLException{
+  public void guardarDamanda(Afiliado afiliado,Persona demandado,Persona actor) throws ClassNotFoundException, SQLException{
   
-      cn = Conexion.getInstance();
+     Conexion cn = Conexion.getInstance();
      ResultSet rs=null;
-     int idAUX=0;
-       // rs=cn.Select("")
-  String cuil = null;
-     rs= cn.Select("SELECT COUNT(idBoletas) AS id FROM boletas");
-     if(rs!=null){
-         rs.first();
-     idAUX=Integer.parseInt(rs.getObject("id").toString())+1;
-     }
-     System.out.println(" ---guardo boleta----- "+id+' '+fecha+' '+monto+' '+caja_inicio_ap+' '+caja_inicio_cont+' '+actor.get_nombre()+' '+demandado.get_nombre());
-          System.out.println("---"+cn.Insert("INSERT INTO boletas (idBoletas, ValoresCajaRentas_id, fecha, monto_juicio, monto_aportes, monto_contrubu, actor, demandado) "
-                 + "VALUES ('"+idAUX+"', '"+id+"','"+fecha+"','"+monto+"', '"+caja_inicio_ap+"', '"+caja_inicio_cont+"', '"+actor.get_nombre()+"', '"+demandado.get_nombre()+"')"));
-          //System.out.println("leng .... 1 "+dato);
-         
-   for(int i=0;i <afiliado.size();i++) {     
-       
-        rs= cn.Select("SELECT cuil FROM abogado WHERE codprof='"+afiliado.get(i).getCod_profecional()+"'");
-     if(rs!=null){
-         rs.first();
-     cuil=rs.getObject("cuil").toString();
-     }
-       
-        System.out.println("++"+cuil+' '+afiliado.get(i).getCod_profecional()+' '+afiliado.get(i).getPorcentaje_en_boleta_inicio());
-       System.out.println(" afiliado "+
-         cn.Insert("INSERT INTO abogado_has_boletas (abogado_cuil, Boletas_idBoletas, porcentaje_aporte) "
-                 + "VALUES ('"+cuil+"','"+idAUX+"', '"+afiliado.get(i).getPorcentaje_en_boleta_inicio()+"')"));
      
-  }}
+       // rs=cn.Select("")
   
-  
-  
-  
+     
+         cn.Insert("INSERT INTO `boletas` (`idBoletas`, `ValoresCajaRentas_id`, `fecha`, `monto_juicio`, `monto_aportes`, `monto_contrubu`, `actor`, `demandado`) "
+                 + "VALUES ('SELECT COUNT(`idBoletas`) FROM `boletas`'+1, '"+id+"','"+fecha+"','"+monto+"', '"+caja_inicio_ap+"', '"+caja_inicio_cont+"', '"+actor.get_nombre()+"', '"+demandado.get_nombre()+"')");
+          //System.out.println("leng .... 1 "+dato);
+     
+  }
         
 }
