@@ -16,6 +16,23 @@ import persistencia.Conexion;
  */
 public class Afiliado extends Abogado {
     
+    float porcentaje_en_boleta_inicio;
+
+    public float getPorcentaje_en_boleta_inicio() {
+        return porcentaje_en_boleta_inicio;
+    }
+
+    public void setPorcentaje_en_boleta_inicio(float porcentaje_en_boleta_inicio) {
+        this.porcentaje_en_boleta_inicio = porcentaje_en_boleta_inicio;
+    }
+
+    public String getCod_profecional() {
+        return cod_profecional;
+    }
+
+    public void setCod_profecional(String cod_profecional) {
+        this.cod_profecional = cod_profecional;
+    }
   String cod_profecional;
 
     public Afiliado() {
