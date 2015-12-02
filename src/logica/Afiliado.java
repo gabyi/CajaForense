@@ -74,8 +74,10 @@ public class Afiliado extends Abogado {
    }
     
     
+      public float calcularParticipacion(int participantes){
     
-    
-    
+    return 100/(float)participantes;
+    }
+       
     
 }

@@ -68,9 +68,9 @@ public class Conexion {
      */
     public void performConnection(){
         String bd = "sql294149"; 
-        String login = "root";
-        String password = "qwerty";
-        String url = "jdbc:mysql://localhost/"+bd;
+        String login = "sql294149";
+        String password = "GabyJorge";
+        String url = "jdbc:mysql://www.db4free.net/"+bd;
         
         
         try{

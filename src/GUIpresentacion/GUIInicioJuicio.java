@@ -63,15 +63,6 @@ Vector <Afiliado> afiliadoArray;
         
     }
   
-   
-
-    
-    
-     private float calcularParticipacion(int participantes){
-    
-    return 100/(float)participantes;
-    }
-    
     public void addAfiliado(){
       afiliado=new Afiliado();
         
@@ -80,7 +71,7 @@ Vector <Afiliado> afiliadoArray;
     String campo=texnombreJuicio.getText(),celdaNombre = "";
     String[] celdas=Utilidad.Utilidad.cortarCadenaPorEspacios(campo);
     int ultimoIndex=celdas.length-1,row=modelo.getRowCount()+1;
-    float participacion=calcularParticipacion(modelo.getRowCount()+1);
+    float participacion=afiliado.calcularParticipacion(modelo.getRowCount()+1);
     
    
     DecimalFormat formateador = new DecimalFormat("######");
@@ -152,7 +143,7 @@ Vector <Afiliado> afiliadoArray;
        
           }
     
-        System.out.println("---selccionado: "+nombres.getItemSelected());
+        //System.out.println("---selccionado: "+nombres.getItemSelected());
   
         }
     
@@ -194,7 +185,7 @@ Vector <Afiliado> afiliadoArray;
        
           }
     
-        System.out.println("---selccionado: "+juicios.getItemSelected());
+       // System.out.println("---selccionado: "+ juicios.getItemSelected());
   
         }
     

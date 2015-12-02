@@ -241,7 +241,7 @@ public class GUIConsultaAportes extends javax.swing.JPanel {
        
           }
     
-        System.out.println("---selccionado: "+abnombres.getItemSelected());
+        //System.out.println("---selccionado: "+abnombres.getItemSelected());
   
         }
     
