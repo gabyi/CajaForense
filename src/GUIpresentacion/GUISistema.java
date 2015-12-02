@@ -5,21 +5,85 @@
  */
 package GUIpresentacion;
 
+import java.awt.Frame;
+import java.awt.Menu;
+import java.awt.MenuBar;
+import java.awt.Panel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+//import logica.Commando;
+import java.awt.FileDialog;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import logica.BotonCentro;
+import logica.BotonDerecha;
+import logica.BotonIzquierda;
+import logica.BtnRedCommand;
+import logica.Command;
+
+//import logica.Command;
 
 /**
  *
  * @author gabriel
  */
-public class GUISistema extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Sistema
-     */
-    public GUISistema() {
+public class GUISistema extends javax.swing.JFrame implements ActionListener {
+    //Command cm;
+
+BotonIzquierda bt;
+BotonDerecha bd;
+BotonCentro bc;
+
+   
+
+   public GUISistema() {
         initComponents();
+        
+           addWindowListener( new WindowAdapter() {
+    	 public void windowClosing( WindowEvent e ) {
+    		 System.exit(0);
+    	 }
+     } );
+        
+     
+        bt=new BotonIzquierda("Izquierda",this);
+        bc=new BotonCentro("Centro",this);
+        bd=new BotonDerecha("Derecha",this);
+  
+        bt.setBounds(5,5, 100, 30);
+        bc.setBounds(105,5, 100, 30);
+        bd.setBounds(205,5, 100, 30);
+    
+        
+      //  izquierdo.addActionListener(this);
+//        this.repaint();
+       
+//    btnRed.addActionListener(this);
+//    setBounds(100, 100, 200, 100);
+//        izquierdo.setBounds(izquierdo.getBounds());
+    bt.addActionListener(this);  
+    bt.setVisible(true);
+    bc.addActionListener(this);  
+    bc.setVisible(true);
+    bd.addActionListener(this);  
+    bd.setVisible(true);
+    add(bt);
+//    bt.requestFocus();
+    add(bc);
+//    bc.requestFocus();
+    add(bd);
+//    bd.requestFocus();
+    
     }
+     public void actionPerformed(ActionEvent e) {
+         System.out.println("asdasdasdas");
+    Command obj = (Command) e.getSource();
+    obj.Execute();
+  }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -69,18 +133,18 @@ public class GUISistema extends javax.swing.JFrame {
         Principal.setLayout(PrincipalLayout);
         PrincipalLayout.setHorizontalGroup(
             PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PrincipalLayout.createSequentialGroup()
-                .addGap(0, 414, Short.MAX_VALUE)
-                .addComponent(titulo_ppal, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(303, 303, 303))
             .addComponent(jTabbedPane1)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PrincipalLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(titulo_ppal, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(293, 293, 293))
         );
         PrincipalLayout.setVerticalGroup(
             PrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(PrincipalLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(titulo_ppal, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -100,9 +164,10 @@ public class GUISistema extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
+      
+       
+
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -154,4 +219,6 @@ public class GUISistema extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JLabel titulo_ppal;
     // End of variables declaration//GEN-END:variables
+
+ 
 }
